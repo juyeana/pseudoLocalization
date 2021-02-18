@@ -21,8 +21,12 @@ router.post('/', async (req, res, next) => {
 
     for(const letter of input){
 
-      output = output.concat(chars[letter])
+      output = chars[letter]? output.concat(chars[letter]) : output.concat(letter)
+
+      console.log(letter, chars[letter])
+      
     }
+    console.log(output)
     res.status(200).json(output)
   }
 })
