@@ -6,5 +6,25 @@ const chars = JSON.parse(
 
 const router = express.Router();
 
+// @route POST /api/v1/pseudo
+// @desc conver input string to pseudo characters
 
-console.log(chars)
+router.post('/', async (req, res, next) => {
+  const input = await req.body.str;
+
+  // iterate the string
+  // take each character as key and get the corresponding value
+  // return the new string of values
+  let output=""
+
+  if(input){
+
+    for(const letter of input){
+
+      output = output.concat(chars[letter])
+    }
+    res.status(200).json(output)
+  }
+})
+
+module.exports = router

@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // ROUTES
 
-// app.use('/api/v1/pseudo', pseudo);
+app.use('/api/v1/pseudo', pseudo);
 
 const port = process.env.PORT || 8000;
 
