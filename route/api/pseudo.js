@@ -7,26 +7,30 @@ const chars = JSON.parse(
 const router = express.Router();
 
 // @route POST /api/v1/pseudo
-// @desc conver input string to pseudo characters
+// @desc convert input string to pseudo characters
+// @access PUBLIC
 
 router.post('/', async (req, res, next) => {
-  const input = await req.body.str;
+  const {inputStr, checked} = await req.body;
+
 
   // iterate the string
   // take each character as key and get the corresponding value
   // return the new string of values
   let output=""
+  const prepend='[||'
+ const append='||]'
+  if(inputStr){
 
-  if(input){
-
-    for(const letter of input){
+    for(const letter of inputStr){
 
       output = chars[letter]? output.concat(chars[letter]) : output.concat(letter)
-
-      console.log(letter, chars[letter])
       
     }
-    console.log(output)
+
+    if(checked){
+      output = prepend+output+append
+    }
     res.status(200).json(output)
   }
 })
