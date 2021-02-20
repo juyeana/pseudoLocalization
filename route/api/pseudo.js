@@ -17,8 +17,8 @@ router.post('/', async (req, res, next) => {
   let output = '';
 
   // prepend and append string to wrap altered string
-  const prepend = '[!!';
-  const append = '!!]';
+  const prepend = '[||';
+  const append = '||]';
 
   if (inputStr) {
     // iterate the input string

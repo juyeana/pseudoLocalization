@@ -91,7 +91,7 @@ class Landing extends Component {
                 readOnly
                 name='alteredText'
                 defaultValue={this.state.alteredText}
-                placeholder='Ёดt̪εя Ўơůя t̪εχt̪'
+                placeholder='Ёดtεя Ўơůя tεχt'
               ></textarea>
             </form>
           </div>
