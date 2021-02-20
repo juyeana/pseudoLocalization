@@ -17,8 +17,8 @@ router.post('/', async (req, res, next) => {
   let output = '';
 
   // prepend and append string to wrap altered string
-  const prepend = '[||';
-  const append = '||]';
+  const prepend = '[!!';
+  const append = '!!]';
 
   if (inputStr) {
     // iterate the input string
@@ -34,14 +34,15 @@ router.post('/', async (req, res, next) => {
       output = prepend + output + append;
     }
 
-    // generate hash of output result
-    let hashGenerated = hash.sha256().update(output).digest('hex');
-
-    // generate hash id based on the generated hash
-    let hashId = parseInt(hashGenerated, 16) % 10 ** 5;
-
-    console.log(hashGenerated, hashId);
+    // add hash id when it was checked
     if (idChecked) {
+      // generate hash of output result
+      let hashGenerated = hash.sha256().update(output).digest('hex');
+
+      // generate hash id based on the generated hash
+      let hashId = parseInt(hashGenerated, 16) % 10 ** 5;
+
+      // console.log(hashGenerated, hashId);
       output = `${hashId}_${output}`;
     }
     res.status(200).json(output);

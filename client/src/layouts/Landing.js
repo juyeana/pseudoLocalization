@@ -1,9 +1,48 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-export default class Landing extends Component {
+class Landing extends Component {
+  constructor() {
+    super();
+    this.state = {
+      inputStr: '',
+      wrapperChecked: null,
+      idChecked: null,
+      alteredText: '',
+    };
+  }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+
+    if (e.target.checked) this.setState({ [e.target.id]: e.target.checked });
+    else this.setState({ [e.target.id]: null });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const text = {
+      inputStr: this.state.inputStr,
+      wrapperChecked: this.state.wrapperChecked,
+      idChecked: this.state.idChecked,
+    };
+
+
+    axios
+      .post('/api/v1/pseudo', text)
+      .then((res) => {
+        this.setState({ alteredText: res.data });
+      })
+      .catch((err) => {
+        this.setState({ alteredText:''})
+      });
+  }
+
   render() {
+    const selectAllText = (e) => {
+      e.target.select();
+    };
     return (
-      <div className='row'>
+      <div className='row  u-margin-top-small'>
         <div className='main-section'>
           <div className='content-head'>
             <div className='heading-primary heading-primary--main'>
@@ -14,37 +53,36 @@ export default class Landing extends Component {
             </div>
           </div>
           <div className='content-body'>
-            <form>
+            <form onSubmit={this.onSubmit.bind(this)} className='form'>
               <textarea
-                id='input-text'
-                autofocus
+                onChange={this.onChange.bind(this)}
+                // id='inputStr'
+                autoFocus
                 rows='10'
                 cols='70'
-                name='input-text'
+                name='inputStr'
                 placeholder='Enter your text'
               ></textarea>
               <br />
               <input
+                onChange={this.onChange.bind(this)}
                 className='u-margin-top-small '
                 type='checkbox'
                 id='wrapperChecked'
-                value='true'
-                name='wrapperChecked'
               />
-              <lable className='checkbox-label' for='wrapperChecked'>
+              <label className='checkbox-label' htmlFor='wrapperChecked'>
                 wrap pseudo characters with prepend & append
-              </lable>
+              </label>
               <br />
               <input
+                onChange={this.onChange.bind(this)}
                 className='u-margin-top-small'
                 type='checkbox'
                 id='idChecked'
-                value='true'
-                name='idChecked'
               />
-              <lable className='checkbox-label' for='idChecked'>
-                add a hash id
-              </lable>
+              <label className='checkbox-label' htmlFor='idChecked'>
+                add hash id
+              </label>
               <div className='sendText u-margin-both-small'>
                 <button type='submit'>
                   <i className='fas fa-angle-double-down arrow'></i>
@@ -52,12 +90,12 @@ export default class Landing extends Component {
               </div>
 
               <textarea
-                readonly
-                id='altered-text'
-                autofocus
+                onClick={selectAllText}
+                readOnly
                 rows='10'
                 cols='70'
-                name='altered-text'
+                name='alteredText'
+                defaultValue={this.state.alteredText}
                 placeholder='Ёดt̪εя Ўơůя t̪εχt̪'
               ></textarea>
             </form>
@@ -67,3 +105,5 @@ export default class Landing extends Component {
     );
   }
 }
+
+export default Landing;
