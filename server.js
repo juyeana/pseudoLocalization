@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const path = require('path');
 dotenv.config({ path: './config.env' });
 
 const pseudo = require('./route/api/pseudo');
@@ -24,6 +25,13 @@ app.use(express.urlencoded({ extended: false }));
 // ROUTES
 
 app.use('/api/v1/pseudo', pseudo);
+
+if(process.env.NODE_ENV === 'production'){
+		  app.use(express.static('client/build'));
+		  app.get('*', (req, res) => {
+		    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+		  });
+}
 
 const port = process.env.PORT || 8000;
 

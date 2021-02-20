@@ -1,15 +1,31 @@
+.App {
+  width: 40rem;
+  display: inline-block;
+}
+*,
+*::before,
+*::after {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: inherit;
+}
+
 html {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
   font-size: 75%;
 }
+@media (max-width: 37.5em) {
+  html {
+    font-size: 60%;
+  }
+}
 body {
+  margin: 0;
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
   color: rgb(36, 36, 36);
   text-align: center;
 }
+
 /* utilities */
 .u-align-center {
   text-align: center;
@@ -23,31 +39,35 @@ body {
 .u-margin-top-small {
   margin-top: 1rem;
 }
-
 .u-margin-bottom-small {
   margin-bottom: 1rem;
 }
-
 .u-margin-both-small {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-
 /* utilities ends*/
 
 .main-section {
-  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   display: inline-block;
-  width: 48rem;
-  box-shadow: 0rem 0rem .2rem rgba(0,0,0, 0.5);
+  width: 100%;
+  box-shadow: 0rem 0rem 0.2rem rgba(0, 0, 0, 0.5);
   border-radius: 0.3rem;
+}
 
+@media (max-width: 37.5em) {
+  .main-section {
+    margin: 0 auto;
+    margin-bottom: 0.5rem;
+  }
 }
 .content-head {
   background-color: rgb(41, 41, 73);
-  padding-top: 0.2rem;
-  padding-bottom: 1rem;
-  box-shadow: 0rem 0rem .2rem rgba(0,0,0, 0.5);
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+  box-shadow: 0rem 0rem 0.2rem rgba(0, 0, 0, 0.5);
 
   border-radius: 0.3rem 0.3rem 0 0;
 }
@@ -59,10 +79,8 @@ body {
   color: #555;
 }
 
-
-
 .content-body {
-  height: 40rem;
+  height: 34rem;
   background-color: rgb(245, 245, 245);
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -71,6 +89,8 @@ body {
 
 textarea {
   resize: none;
+  width: 80%;
+  height: 10rem;
 }
 
 input[type='checkbox'] {
@@ -118,6 +138,11 @@ button[type='submit']:visited {
   outline: none;
   border-color: rgb(245, 245, 245);
 }
-button[type='submit']:focus { 
-    outline: none; 
+button[type='submit']:focus {
+  outline: none;
+}
+
+.footer {
+  display: inline-block;
+  margin: 0 auto;
 }

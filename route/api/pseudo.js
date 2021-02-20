@@ -42,7 +42,6 @@ router.post('/', async (req, res, next) => {
       // generate hash id based on the generated hash
       let hashId = parseInt(hashGenerated, 16) % 10 ** 5;
 
-      // console.log(hashGenerated, hashId);
       output = `${hashId}_${output}`;
     }
     res.status(200).json(output);

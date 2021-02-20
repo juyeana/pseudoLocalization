@@ -26,14 +26,13 @@ class Landing extends Component {
       idChecked: this.state.idChecked,
     };
 
-
     axios
       .post('/api/v1/pseudo', text)
       .then((res) => {
         this.setState({ alteredText: res.data });
       })
       .catch((err) => {
-        this.setState({ alteredText:''})
+        this.setState({ alteredText: '' });
       });
   }
 
@@ -42,12 +41,12 @@ class Landing extends Component {
       e.target.select();
     };
     return (
-      <div className='row  u-margin-top-small'>
+      <div className='row'>
         <div className='main-section'>
           <div className='content-head'>
             <div className='heading-primary heading-primary--main'>
               <h1>Pseudo Localization Tool</h1>
-              <h2 className='heading-primary heading-primary--second'>
+              <h2 className='heading-primary heading-primary--second u-margin-top-small'>
                 Pšεůđơ Լơ¢áլίžát̪ίơด ʈơơլ
               </h2>
             </div>
@@ -58,8 +57,6 @@ class Landing extends Component {
                 onChange={this.onChange.bind(this)}
                 // id='inputStr'
                 autoFocus
-                rows='10'
-                cols='70'
                 name='inputStr'
                 placeholder='Enter your text'
               ></textarea>
@@ -92,8 +89,6 @@ class Landing extends Component {
               <textarea
                 onClick={selectAllText}
                 readOnly
-                rows='10'
-                cols='70'
                 name='alteredText'
                 defaultValue={this.state.alteredText}
                 placeholder='Ёดt̪εя Ўơůя t̪εχt̪'
