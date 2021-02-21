@@ -72,6 +72,20 @@ class Landing extends Component {
               </label>
               <br />
               <input
+                type='text'
+                name='prepend'
+                class='prepend'
+                placeholder='prepend'
+              ></input>
+              <br />
+              <input
+                type='text'
+                name='append'
+                class='append'
+                placeholder='append'
+              ></input>
+              <br />
+              <input
                 onChange={this.onChange.bind(this)}
                 className='u-margin-top-small'
                 type='checkbox'
