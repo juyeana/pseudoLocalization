@@ -50,7 +50,6 @@ class Landing extends Component {
 
       })
       .catch((err) => {
-        console.log(err)
         this.setState({ alteredText: '' });
         if (err.response.status === 500) {
           this.setState({
@@ -67,9 +66,8 @@ class Landing extends Component {
       e.target.select();
     };
 
-    // const errorRender=<div className="error">{this.state.errors}</div>;
 
-    console.log(this.state.errors);
+
     return (
       <div className='row'>
         <div className='main-section'>

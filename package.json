@@ -1,7 +1,7 @@
 {
   "name": "pseudolocalization",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.0",
+  "description": "Creating psedo locale to help developers for psedolocalization in localization industry. Version 1.1 added an extra feature that allows developers to add their own pseudo characters, prepend, append, and the number of digits of hash id to form pseudo locale",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
