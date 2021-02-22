@@ -52,7 +52,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// @route POST /api/v1/pseudo/customize
+// @route POST /api/v1/pseudo/customization
 // @desc convert input string to pseudo characters by user's custimized input
 // @access PUBLIC
 router.post(
@@ -66,13 +66,25 @@ router.post(
 
     // store the parsed data into a variable and then remove the file
 
-    if (req.file.mimetype === 'application/json') {
-      importedChars = JSON.parse(
-        fs.readFileSync(`${__dirname}/../../data/${req.file.filename}`, 'utf8')
-      );
-      fs.unlink(`${__dirname}/../../data/${req.file.filename}`, (err) => {
-        if (err) console.log(err);
-      });
+    if (req.file && req.file.mimetype === 'application/json') {
+      try {
+        importedChars = JSON.parse(
+          fs.readFileSync(
+            `${__dirname}/../../data/${req.file.filename}`,
+            'utf8'
+          )
+        );
+        fs.unlink(`${__dirname}/../../data/${req.file.filename}`, (err) => {
+          if (err) console.log(err);
+        });
+      } catch (err) {
+        fs.unlink(`${__dirname}/../../data/${req.file.filename}`, (err) => {
+          if (err) console.log(err);
+        });
+        return res
+          .status(400)
+          .json('Something went wrong. Your json file may be corrupted');
+      }
     }
 
     // prepend and append string to wrap altered string
@@ -98,7 +110,7 @@ router.post(
         // generate hash of output result
         let hashGenerated = hash.sha256().update(output).digest('hex');
 
-        // generate hash id 
+        // generate hash id
         let hashId = parseInt(hashGenerated, 16) % 10 ** id_digits;
 
         output = `${hashId}_${output}`;

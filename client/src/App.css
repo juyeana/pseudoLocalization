@@ -50,6 +50,7 @@ body {
 
 .main-section {
   margin-top: 2rem;
+
   margin-bottom: 1rem;
   display: inline-block;
   width: 100%;
@@ -64,6 +65,7 @@ body {
   }
 }
 .content-head {
+
   background-color: rgb(41, 41, 73);
   padding-top: 1.5rem;
   padding-bottom: 2rem;
@@ -146,3 +148,47 @@ button[type='submit']:focus {
   display: inline-block;
   margin: 0 auto;
 }
+.content-body-customization {
+  height: 35rem;
+  background-color: rgb(245, 245, 245);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  /* border-radius: 0.3rem; */
+}
+
+.customization{
+  padding-right:1rem;
+  display:block;
+}
+
+.customization:link {
+text-decoration: none;
+color:rgb(245, 245, 245);
+}
+.customization:hover{
+text-decoration:underline;
+}
+
+.customization:active {
+text-decoration: none;
+color:rgb(245, 245, 245);
+}
+
+.customization:visited {
+text-decoration: none;
+color:rgb(245, 245, 245);
+}
+
+input[type="text"]{
+  width:25%;
+  font-size: .9rem;
+}
+
+.error{
+  font-size:.8rem;
+  color:red;
+  padding-top: 0.5em;
+}
+
+
+

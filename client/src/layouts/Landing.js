@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 class Landing extends Component {
   constructor() {
@@ -49,6 +51,9 @@ class Landing extends Component {
               <h2 className='heading-primary heading-primary--second u-margin-top-small'>
                 Pšεůđơ Լơ¢áլίžát̪ίơด ʈơơլ
               </h2>
+              <Link to='/customization' className='customization u-align-right'>
+                customize it <i className='fas fa-angle-double-right'></i>
+              </Link>
             </div>
           </div>
           <div className='content-body'>
@@ -68,22 +73,8 @@ class Landing extends Component {
                 id='wrapperChecked'
               />
               <label className='checkbox-label' htmlFor='wrapperChecked'>
-                wrap pseudo characters with prepend & append
+                Prepend & Append
               </label>
-              <br />
-              <input
-                type='text'
-                name='prepend'
-                class='prepend'
-                placeholder='prepend'
-              ></input>
-              <br />
-              <input
-                type='text'
-                name='append'
-                class='append'
-                placeholder='append'
-              ></input>
               <br />
               <input
                 onChange={this.onChange.bind(this)}
@@ -92,7 +83,7 @@ class Landing extends Component {
                 id='idChecked'
               />
               <label className='checkbox-label' htmlFor='idChecked'>
-                add hash id
+                Add hash id
               </label>
               <div className='sendText u-margin-both-small'>
                 <button type='submit'>
