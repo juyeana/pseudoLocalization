@@ -2,7 +2,7 @@
 > Web app to generate pseudo-localized strings for pseudo localization test
 
 <hr>
-### Try yourself!
+## Try yourself!
 
 deployed via Heroku at [Pseudo Localization Tool](https://pseudo-localization.herokuapp.com/)  
 <hr>
