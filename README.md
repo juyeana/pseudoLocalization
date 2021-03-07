@@ -9,6 +9,8 @@
 ## Try it for yourself!
 deployed via Heroku at [Pseudo Localization Tool](https://pseudo-localization.herokuapp.com/)  
 
+[Video walkthrough](https://youtube.com/playlist?list=PLPyi45Ed2wAyZAwfMr8X9PVTYZvxdvcSr)
+
 <hr>
 
 ![Picture](https://firebasestorage.googleapis.com/v0/b/pseudo-localization.appspot.com/o/images%2Fpseudo-localization-w.jpg?alt=media&token=f7827975-bf6c-40ed-830f-0b8b2e91eb13)
