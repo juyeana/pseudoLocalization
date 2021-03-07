@@ -9,7 +9,7 @@
 ## Try it for yourself!
 deployed via Heroku at [Pseudo Localization Tool](https://pseudo-localization.herokuapp.com/)  
 
-[Video walkthrough](https://youtube.com/playlist?list=PLPyi45Ed2wAyZAwfMr8X9PVTYZvxdvcSr)
+[Video walkthrough](https://www.youtube.com/watch?v=lkBB6GWQiD0&list=PLPyi45Ed2wAyZAwfMr8X9PVTYZvxdvcSr&index=2)
 
 <hr>
 
