@@ -1,16 +1,26 @@
 {
   "name": "pseudolocalization",
   "version": "1.1.0",
-  "description": "Creating psedo locale to help developers for psedolocalization in localization industry. Version 1.1 added an extra feature that allows developers to add their own pseudo characters, prepend, append, and the number of digits of hash id to form pseudo locale",
+  "description": "Generating pseudo localization.  Version 1.1 added an extra feature that allows developers to add their pseudo character map, prepend, append, and the number of digits of hash id.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
     "dev": "concurrently \"npm start\" \"npm run start --prefix client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "test": "karma start"
   },
   "author": "Juyean Lee",
+  "keywords": [
+    "internationalization",
+    "localization",
+    "pseudo-localization",
+    "l10n",
+    "i18n"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juyeana/pseudoLocalization.git"
+  },
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
@@ -18,7 +28,6 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "hash.js": "^1.1.7",
-    "morgan": "^1.10.0",
     "multer": "^1.4.2"
   },
   "devDependencies": {
@@ -29,6 +38,7 @@
     "karma-coverage": "^2.0.3",
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-matchers": "^4.0.2",
+    "morgan": "^1.10.0",
     "nyc": "^15.1.0",
     "puppeteer": "^8.0.0"
   }
