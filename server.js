@@ -9,7 +9,6 @@ const pseudo = require('./route/api/pseudo');
 const app = express();
 
 // middleware to display logger on the console
-
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 app.use(express.static(`${__dirname}/public`));
@@ -17,13 +16,12 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
-//express : parses the JSON body, buffer, string, and URL encoded data submitted using HTTP POST
 
+//express : parses the JSON body, buffer, string, and URL encoded data submitted using HTTP POST
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // ROUTES
-
 app.use('/api/v1/pseudo', pseudo);
 
 if(process.env.NODE_ENV === 'production'){
