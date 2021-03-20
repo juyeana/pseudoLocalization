@@ -16,11 +16,12 @@ const router = express.Router();
 // @route POST /api/v1/pseudo
 // @desc convert input string to pseudo characters with default setting
 // @access PUBLIC
-router.post('/', pseudoController.defaultPseudo);
+router.post('/', upload.single('inputJson'), pseudoController.pseudo);
+
 
 // @route POST /api/v1/pseudo/customize
 // @desc convert input string to pseudo characters by user's custimized input
 // @access PUBLIC
-router.post('/customize', upload.single('inputJson'), pseudoController.customizedPseudo);
+// router.post('/customize', upload.single('inputJson'), pseudoController.customizedPseudo);
 
 module.exports = router;
