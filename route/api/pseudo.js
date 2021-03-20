@@ -1,4 +1,6 @@
 const express = require('express');
+const upload = require('../../utils/upload'); //multer file upload options
+
 const pseudoController = require('../../controllers/pseudoController')
 
 // const fs = require('fs');
@@ -19,6 +21,6 @@ router.post('/', pseudoController.defaultPseudo);
 // @route POST /api/v1/pseudo/customize
 // @desc convert input string to pseudo characters by user's custimized input
 // @access PUBLIC
-router.post('/customize', pseudoController.customizedPseudo);
+router.post('/customize', upload.single('inputJson'), pseudoController.customizedPseudo);
 
 module.exports = router;

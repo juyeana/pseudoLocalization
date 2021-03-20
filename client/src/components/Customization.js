@@ -41,7 +41,6 @@ class Landing extends Component {
     formData.append('inputAppend', inputAppend);
     formData.append('id_digits', id_digits);
     formData.append('inputJson', inputJson);
-
     axios
       .post('/api/v1/pseudo/customize', formData)
       .then((res) => {

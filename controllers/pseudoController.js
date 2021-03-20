@@ -1,9 +1,8 @@
 const fs = require('fs');
 const hash = require('hash.js');
-const upload = require('../../utils/upload'); //multer file upload options
 
 const chars = JSON.parse(
-  fs.readFileSync(`${__dirname}/../../data/charMap.json`)
+  fs.readFileSync(`${__dirname}/../data/charMap.json`)
 );
 
 exports.defaultPseudo = async (req, res, next) => {
@@ -45,8 +44,9 @@ exports.defaultPseudo = async (req, res, next) => {
   }
 };
 
-exports.customizedPseudo(upload.single('inputJson'), async (req, res, next) => {
+exports.customizedPseudo = async (req, res, next) => {
   const { inputStr, inputPrepend, inputAppend, id_digits } = await req.body;
+
 
   let importedChars = {};
   let output = '';
@@ -55,14 +55,15 @@ exports.customizedPseudo(upload.single('inputJson'), async (req, res, next) => {
 
   if (req.file && req.file.mimetype === 'application/json') {
     try {
+
       importedChars = JSON.parse(
-        fs.readFileSync(`${__dirname}/../../data/${req.file.filename}`, 'utf8')
+        fs.readFileSync(`${__dirname}/../data/${req.file.filename}`, 'utf8')
       );
-      fs.unlink(`${__dirname}/../../data/${req.file.filename}`, (err) => {
+      fs.unlink(`${__dirname}/../data/${req.file.filename}`, (err) => {
         if (err) console.log(err);
       });
     } catch (err) {
-      fs.unlink(`${__dirname}/../../data/${req.file.filename}`, (err) => {
+      fs.unlink(`${__dirname}/../data/${req.file.filename}`, (err) => {
         if (err) console.log(err);
       });
       return res
@@ -103,4 +104,5 @@ exports.customizedPseudo(upload.single('inputJson'), async (req, res, next) => {
   } else {
     res.status(400).json('No input is provided');
   }
-});
+}
+;
