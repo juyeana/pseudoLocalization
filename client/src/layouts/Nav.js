@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
 
 export default function Nav() {
   return (
@@ -9,9 +8,7 @@ export default function Nav() {
         <h2 className='heading-primary heading-primary--second u-margin-top-small'>
           Pšεůđơ Լơ¢áլίžát̪ίơด ʈơơլ
         </h2>
-        <Link to='/customization' className='customization u-align-right'>
-          customize it <i class='fas fa-angle-double-right'></i>
-        </Link>
+
       </div>
     </div>
   );

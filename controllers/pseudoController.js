@@ -43,8 +43,8 @@ exports.pseudo = async (req, res, next) => {
 
   // if user didn't provide special character sets, use default.
 
-  prefix = inputPrefix ? inputPrefix : '_[';
-  suffix = inputSuffix ? inputSuffix : ']';
+  prefix = inputPrefix ? inputPrefix : '_[[';
+  suffix = inputSuffix ? inputSuffix : ']]';
 
   if (inputStr) {
     // iterate each character in the input string
@@ -63,7 +63,7 @@ exports.pseudo = async (req, res, next) => {
 
     res.status(200).json(output);
   } else {
-    res.status(400).json('No input is provided');
+    res.status(400).json('No input text is provided');
   }
 };
 
@@ -116,7 +116,7 @@ const generateId = (val, output) => {
 //     }
 //     res.status(200).json(output);
 //   } else {
-//     res.status(400).json('No input is provided');
+//     res.status(400).json('No input tis provided');
 //   }
 // };
 
