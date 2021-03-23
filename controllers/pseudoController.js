@@ -1,5 +1,6 @@
 const fs = require('fs');
 const hash = require('hash.js');
+const isValid = require('../validation/isValid');
 
 const chars = JSON.parse(fs.readFileSync(`${__dirname}/../data/charMap.json`));
 
@@ -13,13 +14,17 @@ const chars = JSON.parse(fs.readFileSync(`${__dirname}/../data/charMap.json`));
  * */
 exports.pseudo = async (req, res, next) => {
   const { inputStr, inputPrefix, inputSuffix, inputIdDigits } = await req.body;
-
-  console.log(inputIdDigits);
   let prefix, suffix;
 
   let receivedChars = {};
   let output = '';
 
+  // check validation of inputStr and inputIdDigits
+  const errors = isValid(req.body);
+
+  if (Object.keys(errors).length !==0) {
+    return res.status(400).json(errors);
+  }
   // store the parsed data (json file received from user) into a variable and then remove the file
 
   if (req.file && req.file.mimetype === 'application/json') {
@@ -36,48 +41,37 @@ exports.pseudo = async (req, res, next) => {
       });
       return res
         .status(400)
-        .json('Something went wrong. Your json file may be corrupted');
+        .json(
+          'Something went wrong. Your json file may be corrupted or not the right format'
+        );
     }
   } else {
     receivedChars = chars;
   }
-
-  // check if inputIdDigits is valide
-
-  if (
-    parseInt(inputIdDigits) < 0 ||
-    inputIdDigits!== '' && !Number.isInteger(parseInt(inputIdDigits)) 
-  ) {
-    return res
-      .status(400)
-      .json('The input value should be 0 or positive number');
-  }
+  
 
   // if user didn't provide special character sets, use default.
 
   prefix = inputPrefix ? inputPrefix : '_[[';
   suffix = inputSuffix ? inputSuffix : ']]';
 
-  if (inputStr) {
-    // iterate each character in the input string
-    // letters are altered to a pseudo characters
-    // empty space and special characters remained the same
-    // empty string will through an error
-    let strArray = [];
-    for (const letter of inputStr) {
-      strArray.push(receivedChars[letter] ? receivedChars[letter] : letter);
-    }
-    0;
-
-    // concat id + prefix + pseudo characters + suffix
-    output = prefix + strArray.join('') + suffix;
-
-    output = generateId(inputIdDigits, inputStr) + output;
-
-    res.status(200).json(output);
-  } else {
-    res.status(400).json('No input text is provided');
+  // iterate each character in the input string
+  // letters are altered to a pseudo characters
+  // empty space and special characters remained the same
+  // empty string will through an error
+  let strArray = [];
+  for (const letter of inputStr) {
+    strArray.push(receivedChars[letter] ? receivedChars[letter] : letter);
   }
+  0;
+
+  // concat id + prefix + pseudo characters + suffix
+  output = prefix + strArray.join('') + suffix;
+
+  output = generateId(inputIdDigits, inputStr) + output;
+
+  res.status(200).json(output);
+
 };
 
 /**

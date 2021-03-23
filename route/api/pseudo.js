@@ -19,9 +19,5 @@ const router = express.Router();
 router.post('/', upload.single('inputJson'), pseudoController.pseudo);
 
 
-// @route POST /api/v1/pseudo/customize
-// @desc convert input string to pseudo characters by user's custimized input
-// @access PUBLIC
-// router.post('/customize', upload.single('inputJson'), pseudoController.customizedPseudo);
 
 module.exports = router;
