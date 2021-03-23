@@ -8,8 +8,8 @@ export default function Nav() {
         <h2 className='heading-primary heading-primary--second u-margin-top-small'>
           Pšεůđơ Լơ¢áլίžát̪ίơด ʈơơլ
         </h2>
-
       </div>
+
     </div>
   );
 }
