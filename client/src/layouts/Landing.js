@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import classnames from 'classnames';
 
 class Landing extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class Landing extends Component {
       inputIdDigits: '',
       inputJson: null,
       alteredText: '',
-      errors: '',
+      errors: {},
     };
   }
   onChange(e) {
@@ -22,7 +23,6 @@ class Landing extends Component {
   }
 
   onSubmit(e) {
-    // console.log(this.state.inputJson);
     e.preventDefault();
 
     const {
@@ -44,13 +44,16 @@ class Landing extends Component {
       .post('/api/v1/pseudo', formData)
       .then((res) => {
         this.setState({ alteredText: res.data });
-        this.setState({ errors: '' });
+        this.setState({ errors: {} });
       })
       .catch((err) => {
         this.setState({ alteredText: '' });
         if (err.response.status === 500) {
           this.setState({
-            errors: 'Invalid file format! Only json file is supported',
+            errors: {
+              ...err.response.data,
+              inputJson: 'Invalid file format! Only json file is supported',
+            },
           });
         } else {
           this.setState({ errors: err.response.data });
@@ -63,6 +66,8 @@ class Landing extends Component {
       e.target.select();
     };
 
+    const { errors } = this.state;
+    console.log(errors);
     return (
       <div className='row'>
         <div className='main-section'>
@@ -73,15 +78,20 @@ class Landing extends Component {
               className='form'
             >
               <textarea
-                className='u-margin-bottom-small'
+                className={classnames('u-margin-bottom-small', {
+                  'is-invalid': errors.inputStr,
+                })}
                 onChange={this.onChange.bind(this)}
                 // autoFocus
                 name='inputStr'
                 placeholder='Enter your text'
               ></textarea>
+              {errors.inputStr && (
+                <div className='invalid-feedback'>{errors.inputStr}</div>
+              )}
               <br />
               <div className='option-body'>
-                <label for='inputPrefix' class='input-label'>
+                <label htmlFor='inputPrefix' className='input-label'>
                   Prefix{' '}
                 </label>{' '}
                 <input
@@ -92,7 +102,7 @@ class Landing extends Component {
                   name='inputPrefix'
                   placeholder='_[['
                 />
-                <label for='inputSuffix' class='input-label'>
+                <label htmlFor='inputSuffix' className='input-label'>
                   Suffix{' '}
                 </label>
                 <input
@@ -104,7 +114,12 @@ class Landing extends Component {
                   placeholder=']]'
                 />
                 <br />
-                <label for='inputIdDigits' class='input-label'>
+                <label
+                  htmlFor='inputIdDigits'
+                  className={classnames('input-label', {
+                    'is-invalid': errors.inputIdDigits,
+                  })}
+                >
                   # of digits of id{' '}
                 </label>
                 <input
@@ -115,7 +130,15 @@ class Landing extends Component {
                   name='inputIdDigits'
                   placeholder='six-digit is default'
                 />
-                <label className='label-file' htmlFor='upload'>
+                {errors.inputIdDigits && (
+                  <div className='invalid-feedback'>{errors.inputIdDigits}</div>
+                )}
+                <label
+                  className={classnames('label-file', {
+                    'is-invalid': errors.inputJson,
+                  })}
+                  htmlFor='upload'
+                >
                   [Optional] Upload your own pseudo character sets in .json
                 </label>
                 <input
@@ -124,11 +147,10 @@ class Landing extends Component {
                   type='file'
                   name='inputJson'
                 />
+                {errors.inputJson && (
+                  <div className='invalid-feedback'>{errors.inputJson}</div>
+                )}
               </div>
-
-              {this.state.errors && (
-                <div className='error'>{this.state.errors}</div>
-              )}
 
               <div className='sendText u-margin-both-small'>
                 <button type='submit'>
