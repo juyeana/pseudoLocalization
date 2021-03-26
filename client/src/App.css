@@ -86,7 +86,8 @@ body {
 }
 
 .content-body {
-  height: 46rem;
+  min-height: 46rem;
+  height: auto;
   background-color: rgb(245, 245, 245);
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -248,9 +249,27 @@ button[type='submit']:focus {
   font-size: 0.8rem;
   color: red;
   padding-top: 0.5em;
-}
+}*/
 .invalid-feedback {
+  text-align: center;
   font-size: 0.8rem;
   color: red;
   padding-top: 0.5em;
-} */
+}
+.instruction-header {
+  color: rgb(78, 139, 62);
+  font-weight: 700;
+  /* font-size: 1.3rem; */
+}
+
+ul {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+li {
+  margin-bottom: 0.5rem;
+}
+.inline-code {
+  color: rgb(76, 76, 228);
+  margin-top: 1rem;
+}

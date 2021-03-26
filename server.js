@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // ROUTES
-app.use('/api/v1/pseudo', pseudo);
+app.use('/api/v2/pseudo', pseudo);
 
 if(process.env.NODE_ENV === 'production'){
 		  app.use(express.static('client/build'));

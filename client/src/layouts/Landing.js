@@ -11,7 +11,7 @@ class Landing extends Component {
       inputSuffix: '',
       inputIdDigits: '',
       inputJson: null,
-      alteredText: '',
+      pseudoText: '',
       errors: {},
     };
   }
@@ -43,11 +43,11 @@ class Landing extends Component {
     axios
       .post('/api/v1/pseudo', formData)
       .then((res) => {
-        this.setState({ alteredText: res.data });
+        this.setState({ pseudoText: res.data });
         this.setState({ errors: {} });
       })
       .catch((err) => {
-        this.setState({ alteredText: '' });
+        this.setState({ pseudoText: '' });
         if (err.response.status === 500) {
           this.setState({
             errors: {
@@ -67,10 +67,75 @@ class Landing extends Component {
     };
 
     const { errors } = this.state;
-    console.log(errors);
     return (
       <div className='row'>
         <div className='main-section'>
+          <div className='accordion' id='accordionExample'>
+            <div className='accordion-item'>
+              <h2 className='accordion-header' id='headingThree'>
+                <button
+                  className='accordion-button collapsed'
+                  type='button'
+                  data-bs-toggle='collapse'
+                  data-bs-target='#collapseThree'
+                  aria-expanded='false'
+                  aria-controls='collapseThree'
+                >
+                  <strong>Readme</strong>
+                </button>
+              </h2>
+              <div
+                id='collapseThree'
+                className='accordion-collapse collapse'
+                aria-labelledby='headingThree'
+                data-bs-parent='#accordionExample'
+              >
+                <div className='accordion-body'>
+                  <h4 className='instruction-header'>
+                    To convert strings to Pseudo-localized strings
+                  </h4>
+
+                  <ul>
+                    <li>
+                      <strong>API Config</strong>
+                      <ul className='list-sub'>
+                        <li>URL : https://pseudo-localization.herokuapp.com</li>
+
+                        <li>URI : /api/v2/pseudo</li>
+                        <li>method : POST</li>
+                      </ul>
+                      <pre>
+                        <code className='inline-code'>
+                          {`{"inputStr":"I want this text to be localized",
+
+"inputPrefix":"_[[",
+
+"inputSuffix":"]]",
+
+"inputIdDigits":6
+}`}
+                        </code>
+                      </pre>
+                    </li>
+                    <li>
+                      <strong>About string id (# of digits of id)</strong>:
+                      <br />
+                      [note] sha256 hash is used for string id. Due to the
+                      conversion from hex to integer and then using modulus to make the desired id, some collisions are possible.
+                      <ul>
+                        <li>
+                          text box
+                          <br />
+                          - empty : 6 digits as default
+                          <br />- zero: no id showing
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className='content-body'>
             <form
               onSubmit={this.onSubmit.bind(this)}
@@ -139,7 +204,7 @@ class Landing extends Component {
                   })}
                   htmlFor='upload'
                 >
-                  [Optional] Upload your own pseudo character sets in .json
+                  [Optional] Upload your pseudo character sets in .json format
                 </label>
                 <input
                   className='btn-file'
@@ -160,8 +225,8 @@ class Landing extends Component {
               <textarea
                 onClick={selectAllText}
                 readOnly
-                name='alteredText'
-                defaultValue={this.state.alteredText}
+                name='pseudoText'
+                defaultValue={this.state.pseudoText}
                 placeholder='997440_[[Ёดtεя Ўơůя tεχt]]'
               ></textarea>
             </form>
