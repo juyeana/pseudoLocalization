@@ -16,14 +16,14 @@ deployed via Heroku at [Pseudo Localization Tool](https://pseudo-localization.he
 * URI : /api/v2/pseudo
 * method : POST
 
-{"inputStr":"I want this text to be localized",
+     {"inputStr":"I want this text to be localized",
 
-"inputPrefix":"_[[",
+      "inputPrefix":"_[[",
 
-"inputSuffix":"]]",
+      "inputSuffix":"]]",
 
-"inputIdDigits":6
-}
+      "inputIdDigits":6
+     }
 
 * <Note> about the string id (# of digits of id):
   sha256 hash is used for string id. Due to the conversion from hex to integer and then using modulus to make the desired id, some collisions are possible.
