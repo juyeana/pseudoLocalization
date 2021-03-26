@@ -150,7 +150,7 @@ class Landing extends Component {
                 onChange={this.onChange.bind(this)}
                 // autoFocus
                 name='inputStr'
-                placeholder='Enter your text'
+                placeholder='Enter your text here'
               ></textarea>
               {errors.inputStr && (
                 <div className='invalid-feedback'>{errors.inputStr}</div>
@@ -228,7 +228,7 @@ class Landing extends Component {
                 readOnly
                 name='pseudoText'
                 defaultValue={this.state.pseudoText}
-                placeholder='997440_[[Ёดtεя Ўơůя tεχt]]'
+                placeholder='846528_[[Ёดtεя Ўơůя tεχt իεяε]]'
               ></textarea>
             </form>
           </div>
