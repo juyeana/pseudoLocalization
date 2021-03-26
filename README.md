@@ -9,10 +9,27 @@
 ## Try it for yourself!
 deployed via Heroku at [Pseudo Localization Tool](https://pseudo-localization.herokuapp.com/)  
 
-[Video walkthrough](https://www.youtube.com/watch?v=lkBB6GWQiD0&list=PLPyi45Ed2wAyZAwfMr8X9PVTYZvxdvcSr&index=2)
+<hr>
+
+## API Configuration
+* URL : https://pseudo-localization.herokuapp.com
+* URI : /api/v2/pseudo
+* method : POST
+
+{"inputStr":"I want this text to be localized",
+
+"inputPrefix":"_[[",
+
+"inputSuffix":"]]",
+
+"inputIdDigits":6
+}
+
+* <Note> about the string id (# of digits of id):
+  sha256 hash is used for string id. Due to the conversion from hex to integer and then using modulus to make the desired id, some collisions are possible.
 
 <hr>
 
-![Picture](https://firebasestorage.googleapis.com/v0/b/pseudo-localization.appspot.com/o/images%2Fpseudo-localization-w.jpg?alt=media&token=f7827975-bf6c-40ed-830f-0b8b2e91eb13)
+![Picture](https://firebasestorage.googleapis.com/v0/b/pseudo-localization.appspot.com/o/images%2Fpseudo-localization_v2.PNG?alt=media&token=12b57405-ab21-4963-8a0a-c2dfb81e3e00)
 
 
