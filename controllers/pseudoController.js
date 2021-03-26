@@ -19,12 +19,6 @@ exports.pseudo = async (req, res, next) => {
   let receivedChars = {};
   let output = '';
 
-  // check validation of inputStr and inputIdDigits
-  const errors = isValid(req.body);
-
-  if (Object.keys(errors).length !==0) {
-    return res.status(400).json(errors);
-  }
   // store the parsed data (json file received from user) into a variable and then remove the file
 
   if (req.file && req.file.mimetype === 'application/json') {
@@ -48,7 +42,14 @@ exports.pseudo = async (req, res, next) => {
   } else {
     receivedChars = chars;
   }
-  
+
+  // check validation of inputStr and inputIdDigits
+  const errors = isValid(req.body);
+
+  if (Object.keys(errors).length !== 0) {
+    
+    return res.status(400).json(errors);
+  }
 
   // if user didn't provide special character sets, use default.
 
@@ -71,7 +72,6 @@ exports.pseudo = async (req, res, next) => {
   output = generateId(inputIdDigits, inputStr) + output;
 
   res.status(200).json(output);
-
 };
 
 /**

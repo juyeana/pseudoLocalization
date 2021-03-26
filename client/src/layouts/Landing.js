@@ -41,7 +41,7 @@ class Landing extends Component {
     formData.append('inputIdDigits', inputIdDigits);
     formData.append('inputJson', inputJson);
     axios
-      .post('/api/v1/pseudo', formData)
+      .post('/api/v2/pseudo', formData)
       .then((res) => {
         this.setState({ pseudoText: res.data });
         this.setState({ errors: {} });
@@ -121,7 +121,8 @@ class Landing extends Component {
                       <strong>About string id (# of digits of id)</strong>:
                       <br />
                       [note] sha256 hash is used for string id. Due to the
-                      conversion from hex to integer and then using modulus to make the desired id, some collisions are possible.
+                      conversion from hex to integer and then using modulus to
+                      make the desired id, some collisions are possible.
                       <ul>
                         <li>
                           text box
