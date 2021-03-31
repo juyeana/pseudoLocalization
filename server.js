@@ -1,35 +1,37 @@
-const express = require('express');
-const morgan = require('morgan');
+// const express = require('express');
+// const morgan = require('morgan');
 const dotenv = require('dotenv');
-const path = require('path');
+// const path = require('path');
 dotenv.config({ path: './config.env' });
 
-const pseudo = require('./route/api/pseudo');
+const app = require('./app')
 
-const app = express();
+// const pseudo = require('./route/api/pseudo');
 
-// middleware to display logger on the console
-if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
+// const app = express();
 
-app.use(express.static(`${__dirname}/public`));
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  next();
-});
+// // middleware to display logger on the console
+// if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
-//express : parses the JSON body, buffer, string, and URL encoded data submitted using HTTP POST
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.static(`${__dirname}/public`));
+// app.use((req, res, next) => {
+//   req.requestTime = new Date().toISOString();
+//   next();
+// });
 
-// ROUTES
-app.use('/api/v2/pseudo', pseudo);
+// //express : parses the JSON body, buffer, string, and URL encoded data submitted using HTTP POST
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
 
-if(process.env.NODE_ENV === 'production'){
-		  app.use(express.static('client/build'));
-		  app.get('*', (req, res) => {
-		    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-		  });
-}
+// // ROUTES
+// app.use('/api/v2/pseudo', pseudo);
+
+// if(process.env.NODE_ENV === 'production'){
+// 		  app.use(express.static('client/build'));
+// 		  app.get('*', (req, res) => {
+// 		    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+// 		  });
+// }
 
 const port = process.env.PORT || 8000;
 
