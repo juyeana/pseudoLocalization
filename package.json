@@ -1,7 +1,10 @@
 {
   "name": "pseudo-localization-tool",
   "version": "2.0.0",
-  "description": "Generating pseudo localization.  Version 1.1 added an extra feature that allows developers to add their pseudo character map, prepend, append, and the number of digits of hash id.",
+  "engines": {
+    "node": "18.12.0"
+  },
+  "description": "Generate pseudo-localized characters. Version 1.1 added additional features that allow developers to add pseudo character map, prepend, append, and the number of digits of hash id.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
