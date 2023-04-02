@@ -1,5 +1,4 @@
 /node_modules
-package-lock.json
 /view_resource
 /coverage
 .travis.yml_
