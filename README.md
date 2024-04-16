@@ -3,12 +3,6 @@
 >
 > React, Node.js, Express, HTML, CSS
 
-
-<hr>
-
-## Try it for yourself!
-deployed via Heroku at [Pseudo Localization Tool](https://pseudo-localization.herokuapp.com/)  
-
 <hr>
 
 ## API Configuration
